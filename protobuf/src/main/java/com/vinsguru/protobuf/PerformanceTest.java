@@ -1,6 +1,5 @@
 package com.vinsguru.protobuf;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.vinsguru.json.JPerson;
@@ -48,7 +47,7 @@ public class PerformanceTest {
 
     }
 
-    private static void runPerformanceTest(Runnable runnable, String method){
+    private static void runPerformanceTest(Runnable runnable, String method) {
         long time1 = System.currentTimeMillis();
         for (int i = 0; i < 1; i++) {
             runnable.run();
@@ -56,7 +55,7 @@ public class PerformanceTest {
         long time2 = System.currentTimeMillis();
 
         System.out.println(
-               method + " : " + (time2 - time1) + " ms"
+                method + " : " + (time2 - time1) + " ms"
         );
     }
 

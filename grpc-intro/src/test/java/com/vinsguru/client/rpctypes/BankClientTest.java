@@ -23,9 +23,9 @@ public class BankClientTest {
     @BeforeAll
     public void setup() throws SSLException {
 
-        SslContext sslContext = GrpcSslContexts.forClient()
-                .trustManager(new File("path"))
-                .build();
+//        SslContext sslContext = GrpcSslContexts.forClient()
+//                .trustManager(new File("path"))
+//                .build();
 
         ManagedChannel managedChannel = NettyChannelBuilder.forAddress("localhost", 6565)
                 //.sslContext(sslContext)

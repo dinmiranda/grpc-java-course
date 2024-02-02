@@ -6,7 +6,7 @@ import java.util.Map;
 public class SnakesAndLaddersMap {
     private static final Map<Integer, Integer> MAP = new HashMap<>();
 
-    static{
+    static {
         // ladders
         MAP.put(1, 38);
         MAP.put(4, 14);
@@ -26,7 +26,7 @@ public class SnakesAndLaddersMap {
         MAP.put(97, 78);
     }
 
-    public static int getPosition(int position){
+    public static int getPosition(int position) {
         return MAP.getOrDefault(position, position);
     }
 

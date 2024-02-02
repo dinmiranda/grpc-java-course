@@ -17,7 +17,7 @@ public class GameClientTest {
     private GameServiceGrpc.GameServiceStub stub;
 
     @BeforeAll
-    public void setup(){
+    public void setup() {
         ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 6565)
                 .usePlaintext()
                 .build();
@@ -25,7 +25,7 @@ public class GameClientTest {
     }
 
     @Test
-    public void  clientGame() throws InterruptedException {
+    public void clientGame() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
         GameStateStreamingResponse gameStateStreamingResponse = new GameStateStreamingResponse(latch);
         StreamObserver<Die> dieStreamObserver = this.stub.roll(gameStateStreamingResponse);
@@ -33,7 +33,6 @@ public class GameClientTest {
         gameStateStreamingResponse.roll();
         latch.await();
     }
-
 
 
 }

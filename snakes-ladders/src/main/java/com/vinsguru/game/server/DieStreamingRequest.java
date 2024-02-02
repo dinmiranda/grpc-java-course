@@ -11,7 +11,7 @@ public class DieStreamingRequest implements StreamObserver<Die> {
 
     private Player client;
     private Player server;
-    private StreamObserver<GameState> gameStateStreamObserver;
+    private final StreamObserver<GameState> gameStateStreamObserver;
 
     public DieStreamingRequest(Player client, Player server, StreamObserver<GameState> gameStateStreamObserver) {
         this.client = client;
@@ -22,7 +22,7 @@ public class DieStreamingRequest implements StreamObserver<Die> {
     @Override
     public void onNext(Die die) {
         this.client = this.getNewPlayerPosition(this.client, die.getValue());
-        if(this.client.getPosition() != 100){
+        if (this.client.getPosition() != 100) {
             this.server = this.getNewPlayerPosition(this.server, ThreadLocalRandom.current().nextInt(1, 7));
         }
         this.gameStateStreamObserver.onNext(this.getGameState());
@@ -38,20 +38,20 @@ public class DieStreamingRequest implements StreamObserver<Die> {
         this.gameStateStreamObserver.onCompleted();
     }
 
-    private GameState getGameState(){
+    private GameState getGameState() {
         return GameState.newBuilder()
-                    .addPlayer(this.client)
-                    .addPlayer(this.server)
-                    .build();
+                .addPlayer(this.client)
+                .addPlayer(this.server)
+                .build();
     }
 
-    private Player getNewPlayerPosition(Player player, int dieValue){
+    private Player getNewPlayerPosition(Player player, int dieValue) {
         int position = player.getPosition() + dieValue;
         position = SnakesAndLaddersMap.getPosition(position);
-        if(position <= 100){
+        if (position <= 100) {
             player = player.toBuilder()
-                            .setPosition(position)
-                            .build();
+                    .setPosition(position)
+                    .build();
         }
         return player;
     }

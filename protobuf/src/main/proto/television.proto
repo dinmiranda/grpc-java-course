@@ -1,7 +1,7 @@
 syntax = "proto3";
 
-import "common/address.proto";
-import "common/car.proto";
+//import "common/address.proto";
+//import "common/car.proto";
 
 option java_multiple_files = true;
 option java_package = "com.vinsguru.models";
